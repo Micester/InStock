@@ -17,4 +17,16 @@ router.get('/', (req, res) => {
     res.status(200).json(inventoryData);
 })
 
+router.get('/:itemId', (req, res) => {
+    const inventoryData = inventoryRead();
+    const itemId = req.params.itemId;
+    const foundItem = inventoryData.find(item => item.id === itemId);
+    if (!foundItem) {
+        res.status(404).json({
+            error: "Item not found"
+        })
+    }
+    res.status(200).json(foundItem);
+})
+
 module.exports = router;

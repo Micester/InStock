@@ -29,4 +29,16 @@ router.get('/:itemId', (req, res) => {
     res.status(200).json(foundItem);
 })
 
+router.get('/warehouse/:warehouseId', (req, res) => {
+    const inventoryData = inventoryRead();
+    const warehouseId = req.params.warehouseId;
+    const foundWarehouse = inventoryData.filter(item => item.warehouseID === warehouseId);
+    if (!foundWarehouse) {
+        res.status(400).json({
+            error: "Warehouse not found"
+        })
+    }
+    res.status(200).json(foundWarehouse);
+})
+
 module.exports = router;

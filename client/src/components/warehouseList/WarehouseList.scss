@@ -1,0 +1,237 @@
+@use "../../styles/partials/functions" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/reset" as *;
+@use "../../styles/partials/setup" as *;
+@use "../../styles/partials/variables" as *;
+
+.warehouseListPage {
+  &__header {
+    display: flex;
+    flex-direction: column;
+    font-family: $font;
+    justify-content: space-between;
+    @include tablet {
+      padding-top: toRem(28);
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  &__inputbutton {
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      margin-right: toRem(28);
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__heading {
+    padding-left: toRem(24);
+    &--text {
+      font-size: toRem(28);
+      font-weight: $semi-bold;
+    }
+  }
+  &__input {
+    margin-left: toRem(24);
+    margin-right: toRem(24);
+    margin-bottom: toRem(24);
+    padding: toRem(14) toRem(24);
+    border-radius: toRem(20);
+    border-style: solid;
+    @include tablet {
+      margin-bottom: 0;
+    }
+  }
+  &__table-title {
+    display: none;
+    @include tablet {
+      background-color: $secondary-color-two;
+      color: $secondary-color-one;
+      display: flex;
+      flex-direction: row;
+      padding-top: toRem(20);
+      padding-bottom: toRem(20);
+      justify-content: space-between;
+      padding-left: toRem(24);
+
+      &--text {
+        font-size: $body-small;
+        @include desktop {
+          font-size: $body-large;
+        }
+      }
+
+      &--address-text {
+        padding-left: toRem(40);
+        display: flex;
+        flex-direction: row;
+      }
+    }
+    &--sortdefault {
+      width: toRem(140);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      @include desktop {
+        width: toRem(200);
+      }
+      &-add {
+        width: toRem(140);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        @include desktop {
+          display: flex;
+          flex-direction: row;
+          width: toRem(260);
+          padding-left: toRem(40);
+        }
+      }
+    }
+  }
+}
+
+.warehouseList {
+  &__list {
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      border-top: 1px solid $secondary-color-one;
+      justify-content: space-between;
+      padding-left: toRem(30);
+    }
+  }
+  &__line1 {
+    border-top: 1px solid $secondary-color-one;
+    margin: toRem(24) 0;
+    padding: toRem(24) toRem(48) toRem(24) toRem(24);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @include tablet {
+      border-top: none;
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+  &__name {
+    &--ic {
+      width: toRem(140);
+      display: flex;
+      flex-direction: row;
+    }
+    &--label {
+      color: $secondary-color-one;
+      font-size: $body-medium;
+      padding-bottom: toRem(8);
+      font-family: $font;
+      @include tablet {
+        display: none;
+      }
+    }
+    &--input {
+      color: $primary-color-two;
+      font-weight: $semi-bold;
+      font-family: $font;
+    }
+  }
+  &__contactName {
+    @include tablet {
+      display: none;
+    }
+    &--label {
+      width: toRem(140);
+      color: $secondary-color-one;
+      font-size: $body-medium;
+      padding-bottom: toRem(8);
+      @include tablet {
+        display: none;
+      }
+    }
+    &--input {
+      width: toRem(140);
+      color: $primary-color-one;
+    }
+  }
+  &__line2 {
+    margin: toRem(24) toRem(48) toRem(24) toRem(24);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @include tablet {
+      margin-left: 0;
+      margin-right: 0;
+      align-items: center;
+    }
+  }
+  &__Address {
+    &--complete {
+      width: toRem(150);
+      display: flex;
+      flex-wrap: wrap;
+      line-height: toRem(24);
+      @include tablet {
+        width: toRem(130);
+      }
+      @include desktop {
+        width: toRem(300);
+      }
+    }
+    &--label {
+      width: toRem(170);
+      font-size: $body-medium;
+      color: $secondary-color-one;
+      padding-bottom: toRem(8);
+      @include tablet {
+        display: none;
+      }
+    }
+  }
+  &__contactName--tablet {
+    display: none;
+    @include tablet {
+      display: flex;
+      width: toRem(140);
+      color: $primary-color-one;
+      padding-left: toRem(16);
+    }
+    @include desktop {
+      width: toRem(200);
+      padding-left: 0;
+    }
+  }
+  &__ContactInformation {
+    width: toRem(140);
+    &--label {
+      font-size: $body-medium;
+      color: $secondary-color-one;
+      padding-bottom: toRem(8);
+      @include tablet {
+        display: none;
+      }
+    }
+    &--input {
+      line-height: toRem(24);
+      @include tablet {
+        width: toRem(170);
+        padding-left: toRem(16);
+      }
+    }
+  }
+  &__line3 {
+    margin: toRem(24) toRem(48) toRem(24) toRem(24);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @include tablet {
+      margin-left: 0;
+      margin-right: toRem(80);
+    }
+    @include desktop {
+      margin-right: toRem(120);
+    }
+  }
+}

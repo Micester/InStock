@@ -20,19 +20,12 @@ let warehouseRead = () => {
 
 function addWarehouse(body) {
   const warehouseArr = warehouseRead();
-  const warehouse = new Warehouse(
-    body.name,
-    body.address,
-    body.city,
-    body.country,
-    body.contact
-  );
+  const warehouse = new Warehouse(body.name, body.address, body.city, body.country, body.contact);
   warehouseArr.push(warehouse);
-
   fs.writeFileSync(warehouseFile, JSON.stringify(warehouseArr));
-
   return warehouse;
 }
+
 
 function Warehouse(name, address, city, country, contact) {
   this.id = uuidv4();
@@ -51,7 +44,7 @@ router.get("/", (req, res) => {
 router.get("/:warehouseId", (req, res) => {
   const warehouseData = warehouseRead();
   const warehouseId = req.params.warehouseId;
-  const foundWarehouse = warehouseData.find((item) => item.id === warehouseId);
+  const foundWarehouse = warehouseData.find((warehouse) => warehouse.id === warehouseId);
   if (!foundWarehouse) {
     res.status(404).json({
       error: "Warehouse not found",
@@ -85,7 +78,7 @@ let warehouseUpdate = (data) => {
     })
 }
 
-router.patch('/:warehouseId/update', (req, res) => {
+router.put('/:warehouseId/update', (req, res) => {
     const warehouseData = warehouseRead();
     const foundWarehouse = warehouseData.find(warehouse => req.params.warehouseId === warehouse.id);
     if (!foundWarehouse) {
@@ -98,6 +91,46 @@ router.patch('/:warehouseId/update', (req, res) => {
     foundWarehouse.city = req.body.city || foundWarehouse.city;
     foundWarehouse.country = req.body.country || foundWarehouse.country;
     foundWarehouse.contact = req.body.contact || foundWarehouse.name;
+    warehouseUpdate(warehouseData);
+    res.status(200).json(foundWarehouse);
+})
+
+let inventoryRead = () => {
+    const inventoryParse = JSON.parse(fs.readFileSync('./data/inventories.json', 'utf8', (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        return data;
+    }));
+    return inventoryParse
+}
+
+let inventoryUpdate = (data) => {
+    fs.writeFile('./data/inventories.json', JSON.stringify(data), (error) => {
+        if (error) {
+            console.log(error);
+        }
+        console.log('Inventory has been updated');
+    })
+}
+
+router.delete('/:warehouseId', (req, res) => {
+    const warehouseData = warehouseRead();
+    const inventoryData = inventoryRead();
+    const foundWarehouse = warehouseData.find(warehouse => req.params.warehouseId === warehouse.id);
+    const foundWarehouseIndex = warehouseData.findIndex(warehouse => req.params.warehouseId === warehouse.id);
+    if (!foundWarehouse) {
+        res.status(404).json({
+            error: "Warehouse not found"
+        });
+    }
+    for(let i=inventoryData.length-1; i >= 0; i--){
+        if (inventoryData[i].warehouseID === req.params.warehouseId){
+            inventoryData.splice(i, 1);
+        }
+    }
+    inventoryUpdate(inventoryData);
+    warehouseData.splice(foundWarehouseIndex, 1);
     warehouseUpdate(warehouseData);
     res.status(200).json(foundWarehouse);
 })

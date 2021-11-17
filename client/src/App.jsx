@@ -7,8 +7,8 @@ function App() {
     <BrowserRouter>
     {/* Header Component Goes Here */}
     <Switch>
-      <Route path='/' exact component /> {/* WarehousePage */}
-      <Route path='/warehouses' exact component /> {/* WarehousePage */}
+      <Route path='/' exact component={Warehouse} /> {/* WarehousePage */}
+      <Route path='/warehouses' exact component={Warehouse} /> {/* WarehousePage */}
       <Route path='/warehouses/:warehouseId' exact component/> {/* WarehouseSinglePage */}
       <Route path='/warehouses/add/new' exact component /> {/* WarehouseAddPage */}
       <Route path='/warehouses/:warehouseId/edit' component /> {/* WarehouseEditPage */}

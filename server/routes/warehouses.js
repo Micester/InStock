@@ -53,7 +53,7 @@ router.get("/:warehouseId", (req, res) => {
   res.status(200).json(foundWarehouse);
 });
 
-router.post("/create", (req, res) => {
+router.post("/", (req, res) => {
   if (
     !req.body.name ||
     !req.body.address ||

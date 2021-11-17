@@ -22,11 +22,10 @@ function addWarehouse(body) {
   const warehouseArr = warehouseRead();
   const warehouse = new Warehouse(body.name, body.address, body.city, body.country, body.contact);
   warehouseArr.push(warehouse);
-
   fs.writeFileSync(warehouseFile, JSON.stringify(warehouseArr));
-
   return warehouse;
 }
+
 
 function Warehouse(name, address, city, country, contact) {
   this.id = uuidv4();
@@ -48,7 +47,7 @@ router.get("/:warehouseId", (req, res) => {
   const foundWarehouse = warehouseData.find((item) => item.id === warehouseId);
   if (!foundWarehouse) {
     res.status(404).json({
-      error: "Item not found",
+      error: "Warehouse not found",
     });
   }
   res.status(200).json(foundWarehouse);
@@ -67,6 +66,34 @@ router.post("/create", (req, res) => {
       requiredProperties: ["name", "address", "city", "country", "contact"],
     });
   }
+  res.status(200).json(addWarehouse(req.body));
+});
+
+let warehouseUpdate = (data) => {
+    fs.writeFile('./data/warehouses.json', JSON.stringify(data), (error) => {
+        if (error) {
+            console.log(error);
+        }
+        console.log('Warehouse has been updated');
+    })
+}
+
+router.put('/:warehouseId/update', (req, res) => {
+    const warehouseData = warehouseRead();
+    const foundWarehouse = warehouseData.find(warehouse => req.params.warehouseId === warehouse.id);
+    if (!foundWarehouse) {
+        res.status(404).json({
+            error: "Warehouse not found"
+        });
+    }
+    foundWarehouse.name = req.body.name || foundWarehouse.name;
+    foundWarehouse.address = req.body.address || foundWarehouse.address;
+    foundWarehouse.city = req.body.city || foundWarehouse.city;
+    foundWarehouse.country = req.body.country || foundWarehouse.country;
+    foundWarehouse.contact = req.body.contact || foundWarehouse.name;
+    warehouseUpdate(warehouseData);
+    res.status(200).json(foundWarehouse);
+})
   res.json(addWarehouse(req.body));
 });
 

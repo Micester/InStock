@@ -101,4 +101,18 @@ router.put('/:itemId/update', (req, res) => {
     res.status(200).json(foundItem);
 })
 
+router.delete('/:itemId', (req, res) => {
+    const inventoryData = inventoryRead();
+    const foundItem = inventoryData.find(item => req.params.itemId === item.id);
+    const foundItemIndex = inventoryData.findIndex(item => req.params.itemId === item.id);
+    if (!foundItem) {
+        res.status(404).json({
+            error: "Item not found"
+        });
+    }
+    inventoryData.splice(foundItemIndex, 1);
+    inventoryWrite(inventoryData);
+    res.status(200).json(foundItem);
+})
+
 module.exports = router;

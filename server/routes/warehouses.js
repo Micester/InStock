@@ -94,7 +94,5 @@ router.put('/:warehouseId/update', (req, res) => {
     warehouseUpdate(warehouseData);
     res.status(200).json(foundWarehouse);
 })
-  res.json(addWarehouse(req.body));
-});
 
 module.exports = router;

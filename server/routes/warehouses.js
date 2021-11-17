@@ -44,7 +44,7 @@ router.get("/", (req, res) => {
 router.get("/:warehouseId", (req, res) => {
   const warehouseData = warehouseRead();
   const warehouseId = req.params.warehouseId;
-  const foundWarehouse = warehouseData.find((warehouse) => warehouse.id === warehouseId);
+  const foundWarehouse = warehouseData.find((item) => item.id === warehouseId);
   if (!foundWarehouse) {
     res.status(404).json({
       error: "Warehouse not found",
@@ -96,43 +96,49 @@ router.put('/:warehouseId/update', (req, res) => {
 })
 
 let inventoryRead = () => {
-    const inventoryParse = JSON.parse(fs.readFileSync('./data/inventories.json', 'utf8', (err, data) => {
-        if (err) {
-            console.log(err);
-        }
-        return data;
-    }));
-    return inventoryParse
-}
+  const inventoryParse = JSON.parse(
+    fs.readFileSync("./data/inventories.json", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+      return data;
+    })
+  );
+  return inventoryParse;
+};
 
 let inventoryUpdate = (data) => {
-    fs.writeFile('./data/inventories.json', JSON.stringify(data), (error) => {
-        if (error) {
-            console.log(error);
-        }
-        console.log('Inventory has been updated');
-    })
-}
+  fs.writeFile("./data/inventories.json", JSON.stringify(data), (error) => {
+    if (error) {
+      console.log(error);
+    }
+    console.log("Inventory has been updated");
+  });
+};
 
-router.delete('/:warehouseId', (req, res) => {
-    const warehouseData = warehouseRead();
-    const inventoryData = inventoryRead();
-    const foundWarehouse = warehouseData.find(warehouse => req.params.warehouseId === warehouse.id);
-    const foundWarehouseIndex = warehouseData.findIndex(warehouse => req.params.warehouseId === warehouse.id);
-    if (!foundWarehouse) {
-        res.status(404).json({
-            error: "Warehouse not found"
-        });
+router.delete("/:warehouseId", (req, res) => {
+  const warehouseData = warehouseRead();
+  const inventoryData = inventoryRead();
+  const foundWarehouse = warehouseData.find(
+    (warehouse) => req.params.warehouseId === warehouse.id
+  );
+  const foundWarehouseIndex = warehouseData.findIndex(
+    (warehouse) => req.params.warehouseId === warehouse.id
+  );
+  if (!foundWarehouse) {
+    res.status(404).json({
+      error: "Warehouse not found",
+    });
+  }
+  for (let i = inventoryData.length - 1; i >= 0; i--) {
+    if (inventoryData[i].warehouseID === req.params.warehouseId) {
+      inventoryData.splice(i, 1);
     }
-    for(let i=inventoryData.length-1; i >= 0; i--){
-        if (inventoryData[i].warehouseID === req.params.warehouseId){
-            inventoryData.splice(i, 1);
-        }
-    }
-    inventoryUpdate(inventoryData);
-    warehouseData.splice(foundWarehouseIndex, 1);
-    warehouseUpdate(warehouseData);
-    res.status(200).json(foundWarehouse);
-})
+  }
+  inventoryUpdate(inventoryData);
+  warehouseData.splice(foundWarehouseIndex, 1);
+  warehouseUpdate(warehouseData);
+  res.status(200).json(foundWarehouse);
+});
 
 module.exports = router;

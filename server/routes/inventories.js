@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const router =  express.Router();
+const { v4: uuidv4 } = require('uuid');
 
 let inventoryRead = () => {
     const inventoryParse = JSON.parse(fs.readFileSync('./data/inventories.json', 'utf8', (err, data) => {
@@ -39,6 +40,45 @@ router.get('/warehouse/:warehouseId', (req, res) => {
         })
     }
     res.status(200).json(foundWarehouse);
+})
+
+let warehouseRead = () => {
+    const warehouseParse = JSON.parse(fs.readFileSync('./data/warehouses.json', 'utf8', (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        return data;
+    }));
+    return warehouseParse;
+}
+
+
+let inventoryWrite = (file) => {
+    fs.writeFile('./data/inventories.json', JSON.stringify(file), (err) => {
+        if (err) {
+            console.log(err);
+        }
+        console.log('file written successfully');
+    })
+}
+
+router.post('/', (req, res) => {
+    const inventoryData = inventoryRead();
+    const warehouseData = warehouseRead();
+    const foundWarehouse = warehouseData.find(warehouse => req.body.warehouseName === warehouse.name);
+    const newInventoryItem = {
+        id: uuidv4(),
+        warehouseID: foundWarehouse.id,
+        warehouseName: req.body.warehouseName,
+        itemName: req.body.itemName,
+        description: req.body.description,
+        category: req.body.category,
+        status: req.body.status,
+        quantity: req.body.quantity
+    }
+    inventoryData.push(newInventoryItem);
+    inventoryWrite(inventoryData);
+    res.status(201).json(newInventoryItem);
 })
 
 module.exports = router;

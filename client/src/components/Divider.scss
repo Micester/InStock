@@ -1,0 +1,13 @@
+@use '../styles/partials/functions' as *;
+@use '../styles/partials/global' as *;
+@use '../styles/partials/mixins' as *;
+@use '../styles/partials/reset' as *;
+@use '../styles/partials/setup' as *;
+@use '../styles/partials/variables' as *;
+
+.Divider{
+   &-Line{
+       margin: 0;
+       margin-bottom: 16px;
+   }
+}

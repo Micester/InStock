@@ -81,4 +81,24 @@ router.post('/', (req, res) => {
     res.status(201).json(newInventoryItem);
 })
 
+router.put('/:itemId/update', (req, res) => {
+    const inventoryData = inventoryRead();
+    const warehouseData = warehouseRead();
+    const foundWarehouse = warehouseData.find(warehouse => req.body.warehouseName === warehouse.name);
+    const foundItem = inventoryData.find(item => req.params.itemId === item.id);
+    if (!foundItem) {
+        res.status(404).json({
+            error: "Item not found"
+        });
+    }
+    foundItem.warehouseID = foundWarehouse.id;
+    foundItem.warehouseName = req.body.warehouseName || foundItem.warehouseName;
+    foundItem.itemName = req.body.itemName || foundItem.itemName;
+    foundItem.description = req.body.description || foundItem.description;
+    foundItem.category = req.body.category || foundWarehouse.category;
+    foundItem.status = req.body.status || foundItem.status;
+    inventoryWrite(inventoryData);
+    res.status(200).json(foundItem);
+})
+
 module.exports = router;

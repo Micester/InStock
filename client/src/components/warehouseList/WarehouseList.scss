@@ -1,0 +1,28 @@
+@use "../../styles/partials/functions" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/reset" as *;
+@use "../../styles/partials/setup" as *;
+@use "../../styles/partials/variables" as *;
+
+.warehouseListPage{
+  display: flex;
+  flex-direction: column;
+  font-family: $font;
+  &__heading{
+    padding-left: toRem(24);
+    &__text{
+      font-size: toRem(28);
+    }
+  }
+ &__input{
+  margin-left: toRem(24);
+  margin-right: toRem(24);
+  margin-bottom: toRem(24);
+  padding:toRem(8) toRem(24);
+  border-radius: toRem(20);
+  border-style:solid;
+ }
+
+
+}

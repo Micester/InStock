@@ -21,14 +21,27 @@ function WarehouseList(props) {
         {props.warehouses.map((warehouse) => {
           return (
             <li key={warehouse.id}>
-            <div warehouse>
-              <p  className="warehouseListPage__heading--text">{warehouse.name}</p>
+            <div className="warehouseList__line1">
+            <div className="warehouseList__Name">
+            <p className="warehouseList__Name--label">WAREHOUSE</p>
+              <p  className="warehouseList__Name--input">{warehouse.name}</p>
               </div>
-              <p>{warehouse.address}</p>
-              <p>{warehouse.contact.name}</p>
-              <p>{warehouse.contact.position}</p>
-              <p>{warehouse.contact.phone}</p>
-              <p>{warehouse.contact.email}</p>
+              <div className="warehouseList__ContactName">
+              <p className="warehouseList__ContactName--label">CONTACT NAME</p>
+              <p className="warehouseList__ContactName--input">{warehouse.contact.name}</p>
+              </div>
+              </div>
+              <div className="warehouseList__Address">
+              <p className="warehouseList__Address--label">ADDRESS</p>
+              <p className="warehouseList__Address--input">{warehouse.address}</p>
+              </div>
+
+              <div className="warehouseList__ContactInformation">
+              <p className="warehouseList__ContactInformation--label">CONTACT NAME</p>
+
+              <p className="warehouseList__ContactInformation--input">{warehouse.contact.phone}</p>
+              <p className="warehouseList__ContactInformation--input">{warehouse.contact.email}</p>
+              </div>
             </li>
           );
         })}

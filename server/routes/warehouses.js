@@ -20,19 +20,12 @@ let warehouseRead = () => {
 
 function addWarehouse(body) {
   const warehouseArr = warehouseRead();
-  const warehouse = new Warehouse(
-    body.name,
-    body.address,
-    body.city,
-    body.country,
-    body.contact
-  );
+  const warehouse = new Warehouse(body.name, body.address, body.city, body.country, body.contact);
   warehouseArr.push(warehouse);
-
   fs.writeFileSync(warehouseFile, JSON.stringify(warehouseArr));
-
   return warehouse;
 }
+
 
 function Warehouse(name, address, city, country, contact) {
   this.id = uuidv4();
@@ -85,7 +78,7 @@ let warehouseUpdate = (data) => {
     })
 }
 
-router.patch('/:warehouseId/update', (req, res) => {
+router.put('/:warehouseId/update', (req, res) => {
     const warehouseData = warehouseRead();
     const foundWarehouse = warehouseData.find(warehouse => req.params.warehouseId === warehouse.id);
     if (!foundWarehouse) {
@@ -101,5 +94,7 @@ router.patch('/:warehouseId/update', (req, res) => {
     warehouseUpdate(warehouseData);
     res.status(200).json(foundWarehouse);
 })
+  res.json(addWarehouse(req.body));
+});
 
 module.exports = router;

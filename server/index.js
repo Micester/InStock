@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/warehouses', warehouseRoutes);
-app.use('/inventory', inventoryRoutes);
+app.use('/inventories', inventoryRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

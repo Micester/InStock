@@ -1,0 +1,16 @@
+ @use "../../styles/partials/functions" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.Btn {
+  margin-left:toRem(24);
+  margin-right: toRem(24);
+  margin-top:toRem(8);
+  padding:toRem(16) toRem(24);
+  background-color:$primary-color-two;
+  color:$primary-color-three;
+  border:none;
+  border-radius:toRem(24);
+
+}

@@ -1,0 +1,59 @@
+@use '../../styles/partials/functions' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/reset' as *;
+@use '../../styles/partials/setup' as *;
+@use '../../styles/partials/variables' as *;
+
+
+.Button {
+    display: flex;
+    justify-content: space-between;
+    &-Left{
+        background: url(../../assets/icons/delete_outline-24px.svg) no-repeat scroll -0.3rem -0.18rem;
+        width: 14px;
+        height: 18px;
+    }
+
+    &-Left__Trash{
+        background: transparent;
+        border: none !important;
+        font-size: 0;
+    }
+
+    &-Right{
+        background: url(../../assets/icons/edit-24px.svg) no-repeat scroll -0.15rem -0.18rem;
+        width: 18px;
+        height: 18px;
+    }
+
+    &-Right__Edit{
+        background: transparent;
+        border: none !important;
+        font-size: 0;
+    }
+
+    @include tablet {
+        padding-left: 16.25rem;
+        display: flex;
+        &-Left{
+            transform: translateX(1rem);
+        }
+
+        &-Right{
+            transform: translateX(1.75rem);
+        }
+    }
+
+    @include desktop {
+        padding-left: 21.5rem;
+        &-Left{
+            transform: translateX(1rem);
+        }
+
+        // &-Right{
+        //     transform: translateX(62.5rem);
+        // }
+    }
+    
+}

@@ -2,9 +2,9 @@ import React from "react";
 // import axios from "axios";
 
 //Components
-import SearchInv from '../components/SearchInv';
-import Items from '../components/Items';
-import InvyApi from "../data/inventories.json";
+import SearchInv from '../../components/InvSearch/SearchInv';
+import Items from '../../components/InvItems/Items';
+import InvyApi from '../../data/inventories.json'
 
 //Styles 
 import './Main_Inv.css';

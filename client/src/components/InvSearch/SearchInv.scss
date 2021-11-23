@@ -1,9 +1,9 @@
-@use '../styles/partials/functions' as *;
-@use '../styles/partials/global' as *;
-@use '../styles/partials/mixins' as *;
-@use '../styles/partials/reset' as *;
-@use '../styles/partials/setup' as *;
-@use '../styles/partials/variables' as *;
+@use '../../styles/partials/functions' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/reset' as *;
+@use '../../styles/partials/setup' as *;
+@use '../../styles/partials/variables' as *;
 
 .Search {
     // Mobile Styles for Inventory Search 
@@ -20,7 +20,7 @@
     }
     // Search Bar
     &-Bar__Box{
-        background: url(../assets/icons/search-24px.svg) no-repeat scroll 95% 0.3rem;
+        background: url(../../assets/icons/search-24px.svg) no-repeat scroll 95% 0.3rem;
         border: 1px solid $secondary-color-two;
         border-radius: 1.25rem;
         padding-right: 16px;
@@ -48,22 +48,28 @@
         display: flex;
         align-items: center;
         padding: 32px;
+        block-size: fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
         // Title
         &-Title{
             line-height: 40px;
             font-size: $responsive-page-header;
-            margin: 0;
             font-weight: 600;
             padding-bottom: 0;
+
         }
 
         &-Bar{
             padding-left: 250px;
             padding-right: 16px;
+            position: relative;
+            float: right;
+            width: auto;
         }
         // Search Bar
         &-Bar__Box{
-            background: url(../assets/icons/search-24px.svg) no-repeat scroll 95% 0.3rem;
+            background: url(../../assets/icons/search-24px.svg) no-repeat scroll 95% 0.3rem;
             border: 1px solid $secondary-color-two;
             border-radius: 1.25rem;
             padding-right: 16px;
@@ -89,12 +95,15 @@
     }
 
     @include desktop{
+            width: fit-content;
+            block-size: fit-content;
         &-Bar{
             padding-left: 560px;
             padding-right: 16px;
+            float: right;
         }
         &-Bar__Box{
-            background: url(../assets/icons/search-24px.svg) no-repeat scroll 95% 0.3rem;
+            background: url(../../assets/icons/search-24px.svg) no-repeat scroll 95% 0.3rem;
             border: 1px solid $secondary-color-two;
             border-radius: 20px;
             padding-right: 16px;

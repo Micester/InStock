@@ -1,5 +1,5 @@
-import React from "react";
-import './SearchInv.css';
+// Inventory Search Component
+import './SearchInv.scss';
 
 function SearchInv() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
-import Buttons from '../components/Button'
-import Divider from "../components/Divider";
-import './Items.css';
+import Buttons from '../InvButton/Button'
+import Divider from "../InvDivider/Divider";
+import '../InvItems/Items.scss';
 
 function Items(props) {
     console.log('The Items Api', props);
@@ -328,9 +328,10 @@ function Items(props) {
                         <div className="Inventory-info-InventoryBar__Right">
                             <p className="Inventory-info-Right-Status__Data__Quant">{props.ItemApi[0].quantity}</p>
                             <p className="Inventory-info-Right-Status__Data__Warehouse">{props.ItemApi[0].warehouseName}</p>
-                         
+                            <div className="Inventory-info-Right-Buttons">
+                                <Buttons />
+                            </div>
                         </div>
-                        <Buttons />
                     </div>
                     <Divider />
 
@@ -344,9 +345,10 @@ function Items(props) {
                         <div className="Inventory-info-InventoryBar__Right">
                             <p className="Inventory-info-Right-Status__Data__Quant">{props.ItemApi[1].quantity}</p>
                             <p className="Inventory-info-Right-Status__Data__Warehouse">{props.ItemApi[1].warehouseName}</p>
-                   
+                            <div className="Inventory-info-Right-Buttons">
+                                <Buttons />
+                            </div>
                         </div>
-                        <Buttons />
                     </div>
                     <Divider />
 
@@ -360,9 +362,11 @@ function Items(props) {
                         <div className="Inventory-info-InventoryBar__Right">
                             <p className="Inventory-info-Right-Status__Data__Quant">{props.ItemApi[2].quantity}</p>
                             <p className="Inventory-info-Right-Status__Data__Warehouse">{props.ItemApi[2].warehouseName}</p>
-                     
+                            <div className="Inventory-info-Right-Buttons">
+                                <Buttons />
+                            </div>
                         </div>
-                        <Buttons />
+                        
                     </div>
                     <Divider />
 
@@ -376,14 +380,15 @@ function Items(props) {
                         <div className="Inventory-info-InventoryBar__Right">
                             <p className="Inventory-info-Right-Status__Data__Quant">{props.ItemApi[3].quantity}</p>
                             <p className="Inventory-info-Right-Status__Data__Warehouse">{props.ItemApi[3].warehouseName}</p>
-                      
+                            <div className="Inventory-info-Right-Buttons">
+                                <Buttons />
+                            </div>
                         </div>
-                        <Buttons />
                     </div>
                     <Divider />
 
                     <div className="Inventory-info-InventoryBar">
-                    <div className="Inventory-info-InventoryBar__Left">
+                        <div className="Inventory-info-InventoryBar__Left">
                             <p className="Inventory-info-Left-Item__Data__Link">{props.ItemApi[4].itemName}</p>
                             <p className="Inventory-info-Left-Item__Data">{props.ItemApi[4].category}</p>
                             <p className="Inventory-info-Right-Status__Data__Stock">{props.ItemApi[4].status}</p>
@@ -392,14 +397,15 @@ function Items(props) {
                         <div className="Inventory-info-InventoryBar__Right">
                             <p className="Inventory-info-Right-Status__Data__Quant">{props.ItemApi[4].quantity}</p>
                             <p className="Inventory-info-Right-Status__Data__Warehouse">{props.ItemApi[4].warehouseName}</p>
-                         
+                            <div className="Inventory-info-Right-Buttons">
+                                <Buttons />
+                            </div>
                         </div>
-                        <Buttons />
                     </div>
                     <Divider />
 
                     <div className="Inventory-info-InventoryBar">
-                    <div className="Inventory-info-InventoryBar__Left">
+                        <div className="Inventory-info-InventoryBar__Left">
                             <p className="Inventory-info-Left-Item__Data__Link">{props.ItemApi[5].itemName}</p>
                             <p className="Inventory-info-Left-Item__Data">{props.ItemApi[5].category}</p>
                             <p className="Inventory-info-Right-Status__Data__Stock">{props.ItemApi[5].status}</p>
@@ -408,14 +414,15 @@ function Items(props) {
                         <div className="Inventory-info-InventoryBar__Right">
                             <p className="Inventory-info-Right-Status__Data__Quant">{props.ItemApi[5].quantity}</p>
                             <p className="Inventory-info-Right-Status__Data__Warehouse">{props.ItemApi[5].warehouseName}</p>
-                 
+                            <div className="Inventory-info-Right-Buttons">
+                                <Buttons />
+                            </div>
                         </div>
-                        <Buttons />
                     </div>
                     <Divider />
 
                     <div className="Inventory-info-InventoryBar">
-                    <div className="Inventory-info-InventoryBar__Left">
+                        <div className="Inventory-info-InventoryBar__Left">
                             <p className="Inventory-info-Left-Item__Data__Link">{props.ItemApi[6].itemName}</p>
                             <p className="Inventory-info-Left-Item__Data">{props.ItemApi[6].category}</p>
                             <p className="Inventory-info-Right-Status__Data__Stock">{props.ItemApi[6].status}</p>
@@ -424,15 +431,16 @@ function Items(props) {
                         <div className="Inventory-info-InventoryBar__Right">
                             <p className="Inventory-info-Right-Status__Data__Quant">{props.ItemApi[6].quantity}</p>
                             <p className="Inventory-info-Right-Status__Data__Warehouse">{props.ItemApi[6].warehouseName}</p>
-                    
+                            <div className="Inventory-info-Right-Buttons">
+                                <Buttons />
+                            </div>
                         </div>
-                        <Buttons />
                     </div>
                     <Divider />
 
                     {/* Last Row */}
                     <div className="Inventory-info-InventoryBar">
-                    <div className="Inventory-info-InventoryBar__Left">
+                        <div className="Inventory-info-InventoryBar__Left">
                             <p className="Inventory-info-Left-Item__Data__Link">{props.ItemApi[7].itemName}</p>
                             <p className="Inventory-info-Left-Item__Data">{props.ItemApi[7].category}</p>
                             <p className="Inventory-info-Left-Status__Data__OutStock">{props.ItemApi[7].status}</p>
@@ -441,9 +449,10 @@ function Items(props) {
                         <div className="Inventory-info-InventoryBar__Right">
                             <p className="Inventory-info-Right-Status__Data__Quant">{props.ItemApi[7].quantity}</p>
                             <p className="Inventory-info-Right-Status__Data__Warehouse">{props.ItemApi[7].warehouseName}</p>
-                         
+                            <div className="Inventory-info-Right-Buttons">
+                                <Buttons />
+                            </div>
                         </div>
-                        <Buttons />
                     </div>
 
                     <Divider />

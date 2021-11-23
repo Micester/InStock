@@ -1,5 +1,5 @@
-// Button Component
-import './Button.css';
+// Inventory Button Component
+import './Button.scss';
 
 const Buttons = () => {
     return (

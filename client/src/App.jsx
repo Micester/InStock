@@ -1,6 +1,6 @@
 import "./App.scss";
 import Warehouse from "./pages/warehouse/Warehouse";
-import Main_Inv from "./pages/Main_Inv";
+import Main_Inv from "./pages/inventory/Main_Inv";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
